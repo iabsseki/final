@@ -1,0 +1,22 @@
+#instruments {
+    display: flex;
+}
+
+.instrument {
+    width: 500px;
+    height: 500px; 
+}
+
+/* .instrument:hover {
+    background-color: red;
+} */
+
+.imgDiv {
+    width: 200px;
+    height: 200px; 
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
