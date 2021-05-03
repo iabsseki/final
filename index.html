@@ -1,0 +1,78 @@
+<!-- Header Logo Image + "Click me!" -->
+<div id="headerCenter">
+  <a href="https://www.youtube.com/carsonmtech?sub_confirmation=1">
+    <img src="https://i.ibb.co/TKNw0SM/Accordion-music-Amazon-Parody.png" alt="https://ibb.co/vsMcdG4" class="accordionLogo">
+  </a>
+  <h4 onmouseover="PlaySound('rick')" onmouseout="StopSound('rick')">↖ Click me!</h4>
+</div>
+
+<!-- ENTIRE APP -->
+<div id="store-app">
+
+  <!-- Displaying Instruments Stuff -->
+  <div class="item" v-bind:class="inst.brand" v-for="(inst, index) in instruments" v-on:click="popUpDetails(inst, index)">
+    <img v-bind:src="inst.img" @error="imageUrlAlt">
+    <div class="instName" v-bind:brand="inst.brand">{{inst.name}}</div>
+    <button class="addToCartButton" v-on:click="addToCart(inst, index)" v-on:click.stop>Add to Cart</button>
+  </div>
+
+  <!-- Instrument Detail PopUp Stuff -->
+  <div class="popUp" v-if="showPopUp" v-on:click="showPopUp=false">
+    <div class="inst" v-on:click.stop>
+      <button class="xButton" v-on:click="showPopUp=false">X</button>
+      <h2><b>Name:</b> {{popUpItem.name}}</h2>
+      <img v-bind:src="popUpItem.img" @error="imageUrlAlt">
+      <h2><b>Type:</b> {{popUpItem.type}}</h2>
+      <h2><b>Brand:</b> {{popUpItem.brand}}</h2>
+      <h2><b>Price:</b> ${{popUpItem.price}}</h2>
+      <button class="addToCartButton" v-on:click="addToCart2(popUpItem); showPopUp=false">Add to Cart</button>
+
+    </div>
+  </div>
+
+  <!-- Store Empty Message -->
+  <h1 class="storeEmpty" v-if="showEmpty">This store is empty. Add stuff!</h1>
+
+  <!-- Add A New Instrument Button -->
+  <div class="newButton" v-on:click="showNewInst=true">Add New Instrument</div>
+
+  <!-- Cart Button -->
+  <img class="cartButton" v-on:click="emptyCart" src="https://image.flaticon.com/icons/png/512/34/34627.png">
+  <div class="cartCount" v-on:click="emptyCart">{{cartItems.length}}</div>
+
+  <!-- Add New Instrument PopUp Stuff -->
+  <div class="newInstrument" v-if="showNewInst" v-on:click="removePopUp">
+    <form class="formStyle" v-on:click.stop>
+
+      <button class="xButton" v-on:click="removePopUp">X</button>
+      <h2>Add a new instrument!</h2>
+      <input class="inputStyler" placeholder="Instrument Name" v-model="newName" required>
+      <input class="inputStyler" placeholder="Instrument Type (ex. Guitar, Piano, Potato)" v-model="newType" required>
+      <h3>Select a brand:</h3>
+      <div class="radioRow">
+        <label for="yamahaLabel" class="labelFix">
+          <input class="option-input radio" type="radio" value="Yamaha" v-model="newBrand" checked>
+          Yamaha
+        </label>
+        <label for="fenderLabel" class="labelFix">
+          <input class="option-input radio" type="radio" value="Fender" v-model="newBrand">
+          Fender
+        </label>
+        <label for="matonLabel" class="labelFix">
+          <input class="option-input radio" type="radio" value="Maton" v-model="newBrand">
+          Maton
+        </label>
+      </div>
+      <input class="inputStyler" placeholder="Instrument Price" v-model="newPrice" type="number" required>
+      <input class="inputStyler" placeholder="Paste an image URL if you have one!" v-model="newImg">
+      <div class="whatLeft">{{whatLeft}}</div>
+      <button class="submitStyle" type="submit" v-if="reqsMet" v-on:click="newInst">Add Instrument</button> <!-- Activated Add Button-->
+      <button class="submitStyle" type="submit" v-if="!reqsMet">Add Instrument</button> <!-- Deactivated Add Button-->
+
+    </form>
+  </div>
+
+</div>
+
+<!-- Meme tune song for when hovering over "CLICK ME" -->
+<audio src="https://www.soundboard.com/mediafiles/mz/Mzg1ODMxNTIzMzg1ODM3_JzthsfvUY24.MP3" id="rick"></audio>
