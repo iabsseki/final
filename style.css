@@ -1,0 +1,520 @@
+/* General Stuff / Header */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  display: block;
+  position: relative;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+html::after {
+  content: "";
+  background-image: url(https://previews.123rf.com/images/seamartini/seamartini1604/seamartini160400041/54664696-schwarz-wei%C3%9F-musikinstrumente-nahtlose-muster-mit-drum-sets-und-gitarren-trompeten-und-klarinetten-au.jpg);
+  background-repeat: repeat;
+  background-size: 40%;
+  opacity: 0.08;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+body {
+  font-family: "Reem Kufi", sans-serif;
+}
+
+h2 {
+  font-weight: normal;
+}
+
+h3 {
+  font-size: 90%;
+}
+
+h4 {
+  transform: rotate(-9deg);
+  color: #ff4d4d;
+  transition: 1s;
+  font-size: 20px;
+  cursor: progress;
+}
+
+.storeEmpty {
+  text-align: center !important;
+  color: red;
+}
+
+#store-app {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.accordionLogo {
+  width: 500px;
+  text-align: center;
+  padding-top: 10px;
+  margin-top: -10px;
+  padding-top: 20px;
+  margin-bottom: 20px;
+  filter: drop-shadow(2px 2px 1px #222);
+}
+
+.accordionLogo:hover {
+  animation: shake 0.8s;
+  animation-iteration-count: infinite;
+  filter: drop-shadow(2px 2px 3px #ff4d4d);
+}
+
+#headerCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* PopUp & New Instrument X BUTTON */
+.xButton {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  margin-top: 30px;
+  margin-right: 30px;
+  font-size: 20px;
+  border: 3px solid black;
+  right: 0;
+  top: 0;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  outline: none;
+}
+
+.xButton:hover {
+  background-color: white;
+  color: black;
+  box-shadow: 0px 0px 8px black;
+  font-weight: bold;
+  font-size: 27px;
+  height: 35px;
+  width: 35px;
+  transform: translate(2.5px, -2.5px);
+}
+
+.xButton:active {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+/* . */
+/* . */
+/* Displayed Instruments Stuff */
+img {
+  width: 100%;
+  height: 75%;
+  object-fit: contain;
+}
+
+.instName {
+  text-shadow: 1px 1px 2px gray;
+}
+
+.item {
+  background-color: #f5f5f5;
+  margin-bottom: 40px;
+  margin-right: 10px;
+  margin-left: 10px;
+  padding: 5px;
+  padding-bottom: 20px;
+  width: 300px;
+  text-align: center;
+  transition: 0.3s;
+  border-radius: 10px;
+  box-shadow: 1px 1px 8px gray;
+  border: 1px solid black;
+}
+
+.item:hover {
+  box-shadow: 1px 1px 10px black;
+  cursor: pointer;
+}
+
+.item.Yamaha:hover {
+  border: 1px solid #96ffa2;
+}
+
+.item.Fender:hover {
+  border: 1px solid #ff4d4d;
+}
+
+.item.Maton:hover {
+  border: 1px solid #90e0ef;
+}
+
+/* Displayed Instruments Hover BG Color Changer */
+.Yamaha:hover {
+  background-color: #96ffa2;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  transition: 0.3s;
+}
+
+.Fender:hover {
+  background-color: #ff4d4d;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  transition: 0.3s;
+}
+
+.Maton:hover {
+  background-color: #90e0ef;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  transition: 0.3s;
+}
+
+/* . */
+/* . */
+/* Instrument PopUp */
+.popUp {
+  background-color: rgba(0, 0, 0, 0.8);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  padding-top: 20px;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.inst {
+  cursor: pointer;
+  width: 500px;
+  height: 650px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 2px 2px 6px black;
+  border: 1px solid black;
+  border-radius: 70px;
+  margin-top: 30px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* . */
+/* . */
+/* Add New PopUp Instrument Styling */
+.newInstrument {
+  background-color: rgba(0, 0, 0, 0.8);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  padding-top: 70px;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.formStyle {
+  width: 500px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 2px 2px 6px black;
+  border-radius: 70px;
+  margin-top: 30px;
+  padding-top: 40px;
+  margin-left: 20px;
+  position: relative;
+}
+
+.inputStyler {
+  color: black;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  border-radius: 5px;
+  line-height: 22px;
+  background-color: white;
+  border: 3px solid #4a87cb;
+  transition: all 0.3s;
+  padding: 13px;
+  margin-bottom: 15px;
+  width: 80%;
+  box-sizing: border-box;
+  outline: 0;
+  box-shadow: 2px 2px 5px gray;
+}
+
+.inputStyler:focus {
+  border: 3px solid #ff4d4d;
+  box-shadow: 1.5px 1.5px 8px black;
+}
+
+.submitStyle {
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  font-size: 23px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #ffffff !important;
+  background-color: #ff4d4d;
+  border-color: #ff4d4d !important;
+  padding: 8px;
+  border: 4px solid #ff4d4d !important;
+  transition: all 0.4s ease 0s;
+  border-radius: 8px;
+}
+
+.submitStyle:hover {
+  color: black !important;
+  transition: all 0.4s ease 0s;
+  background-color: #ffffff;
+  border: 4px solid black !important;
+  box-shadow: 0px 0px 3px black;
+}
+
+.radioRow {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.labelFix {
+  padding-bottom: 15px;
+}
+
+.whatLeft {
+  text-align: center;
+  width: 400px;
+}
+
+/* . */
+/* . */
+/* Buttons */
+.addToCartButton {
+  cursor: cell;
+  margin-top: 10px;
+  height: 60px;
+  width: 200px;
+  border-radius: 30px;
+  font-size: 28px;
+  transition: 0.2s;
+  box-shadow: 0 5px #666;
+  background-color: #ff9900;
+  border-color: white;
+  outline: none;
+}
+
+.addToCartButton:hover {
+  background-color: white;
+  border-color: white;
+  box-shadow: 1px 1px 3px black;
+}
+
+.newButton {
+  cursor: copy;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-top: 38px;
+  margin-left: 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #ffffff !important;
+  background-color: #ff4d4d;
+  border-color: #ff4d4d !important;
+  padding: 8px;
+  border: 4px solid #ff4d4d !important;
+  transition: all 0.4s ease 0s;
+  border-radius: 8px;
+}
+
+.newButton:hover {
+  color: black !important;
+  transition: all 0.4s ease 0s;
+  background-color: #ffffff;
+  border: 4px solid black !important;
+  box-shadow: 0px 0px 3px black;
+  animation: shake 0.8s;
+  animation-iteration-count: infinite;
+}
+
+.cartButton {
+  cursor: pointer;
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin-top: 35px;
+  margin-right: 26px;
+  height: 45px;
+  width: 45px;
+  filter: drop-shadow(1px 1px 0.5px gray);
+}
+
+.cartButton:hover {
+  animation: shake 0.8s;
+  animation-iteration-count: infinite;
+}
+
+.cartCount {
+  cursor: pointer;
+  position: fixed;
+  top: 0;
+  right: 0;
+  font-size: 20px;
+  margin-right: 9px;
+  margin-top: 23px;
+  padding-bottom: 3px;
+  padding-left: 1px;
+  padding-right: 1px;
+  background-color: #ff4d4d;
+  color: white;
+  width: 27px;
+  height: 26px;
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: 1px 1px 2px gray;
+}
+
+/* RADIO SELECTOR STYLING */
+@keyframes click-wave {
+  0% {
+    height: 30px;
+    width: 30px;
+    opacity: 0.35;
+    position: relative;
+  }
+  100% {
+    height: 100px;
+    width: 100px;
+    margin-left: -36px;
+    margin-top: -36px;
+    opacity: 0;
+  }
+}
+
+.option-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relative;
+  top: 10px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin-left: 30px;
+  height: 30px;
+  width: 30px;
+  transition: all 0.15s ease-out 0s;
+  background: #cbd1d8;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0.5rem;
+  outline: none;
+  position: relative;
+  z-index: 1000;
+}
+.option-input:hover {
+  background: #9faab7;
+}
+.option-input:checked {
+  background: #ff4d4d;
+}
+.option-input:checked::before {
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  content: "✔";
+  display: inline-block;
+  font-size: 20.66667px;
+  text-align: center;
+  line-height: 33px;
+}
+.option-input:checked::after {
+  -webkit-animation: click-wave 0.65s;
+  -moz-animation: click-wave 0.65s;
+  animation: click-wave 0.65s;
+  background: #ff4d4d;
+  content: "";
+  display: block;
+  position: relative;
+  z-index: 100;
+}
+.option-input.radio {
+  border-radius: 50%;
+}
+.option-input.radio::after {
+  border-radius: 50%;
+}
+
+/* Shake animation */
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
